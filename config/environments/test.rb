@@ -46,4 +46,6 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  config.extraction_strategy = [:query_parameter, :request_parameter, :http_header, :http_accept_parameter]
 end
