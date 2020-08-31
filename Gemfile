@@ -16,6 +16,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'dotenv-rails'
+gem 'rails-erd', group: :development
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master', group: :development
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
