@@ -27,7 +27,7 @@ VersionCake.setup do |config|
   #   end
   # end
   # ```
-  # config.extraction_strategy = [:http_accept_parameter, :http_header, :request_parameter, :path_parameter, :query_parameter]
+  config.extraction_strategy = [:http_accept_parameter, :http_header, :request_parameter, :path_parameter, :query_parameter]
 
   # Missing Version
   # What to use when no version in present in the request.
