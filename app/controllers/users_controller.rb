@@ -3,6 +3,18 @@ class UsersController < ApplicationController
         @users = User.all 
     end 
 
+    def create 
+        @user = User.build(user_params)
+
+        if @user.save 
+            set_user(@user)
+            render :user 
+
+        else 
+            render_form_errors(@user.errors.full_messages)
+        end 
+    end 
+
     private 
     
     def user_params(*args)
