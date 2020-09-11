@@ -15,6 +15,16 @@ class UsersController < ApplicationController
         end 
     end 
 
+    def show 
+        @user = User.find_by(id: params[:id])
+
+        if @user 
+            render :user 
+        else 
+            render_page_not_found
+        end 
+    end 
+
     private 
     
     def user_params(*args)

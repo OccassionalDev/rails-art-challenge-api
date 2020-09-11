@@ -40,4 +40,16 @@ RSpec.describe "Users", type: :request do
             expect(json["errors"]).to_not be_nil
         end 
     end
+
+    describe "GET users#show" do 
+        it "should succesfully recieve a user's data with valid attributes" do 
+            get "/api/v1/users/1"
+
+            user = User.first
+            json = JSON.parse(response.body)
+
+            expect(response).to have_http_status(200)
+            expect(json["user"]).to_not be_nil 
+        end 
+    end 
 end
