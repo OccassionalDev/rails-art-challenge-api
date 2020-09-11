@@ -2,10 +2,17 @@ Rails.application.routes.draw do
   defaults format: :json do 
     scope '/api/v:api_version' do
       resources :cakes
-      resources :users
+      resources :users, only: [:index, :show, :create]
+
+      # Logins
+      post '/login' => 'sessions#create'
+      delete '/logout' => 'sessions#destroy'
     end
 
-    resources :users
+    resources :users, only: [:index, :show, :create]
+
+    # Logins
+    post '/login' => 'sessions#create'
+    delete '/logout' => 'sessions#destroy'
   end 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
