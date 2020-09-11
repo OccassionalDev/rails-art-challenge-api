@@ -16,4 +16,13 @@ RSpec.describe "Users", type: :request do
             }.stringify_keys)
         end 
     end 
+
+    describe "POST users#create" do 
+        it "should create a new user with valid attributes" do 
+            new_user = { user: { username: "test_user", email: "test@test.com", password: "asdf", password_confirmation: "asdf" } }
+            
+            post "/api/v1/users", :params => new_user.to_json,  :headers => { "CONTENT_TYPE" => "application/json" }
+            expect(response).to have_http_status(200)
+        end 
+    end
 end

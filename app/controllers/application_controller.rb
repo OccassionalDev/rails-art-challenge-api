@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
     include ActionController::RequestForgeryProtection
 
     before_action :set_csrf_cookie
-    protect_from_forgery with: :exception
+    protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
     helper_method :set_user
     helper_method :page_not_found, :action_could_not_be_performed, :render_form_errors
