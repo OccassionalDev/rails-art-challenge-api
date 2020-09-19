@@ -9,4 +9,8 @@ class SessionsController < ApplicationController
             render_form_errors(['Invalid email or password.'])
         end
     end 
+
+    def destroy
+        session.delete :user_id
+    end 
 end
