@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
+    before do 
+        @login_params = { email: "cr@example.com", password: "sample" }
+    end 
+
+    def login(params)
+        post "/api/v1/login", :params => params.to_json,  :headers => { "CONTENT_TYPE" => "application/json" }
+    end 
+
     describe "POST sessions#create" do 
         it "should succesfully log a valid user in" do
-            login_params = { email: "cr@example.com", password: "sample" }
-
-            post "/api/v1/login", :params => login_params.to_json,  :headers => { "CONTENT_TYPE" => "application/json" }
+            login(@login_params)
             json = JSON.parse(response.body) 
 
             expect(response).to have_http_status(200)
@@ -15,7 +21,7 @@ RSpec.describe "Sessions", type: :request do
         it "should not log a invalid user in" do 
             invalid_params = { email: "asdf", password: "asdf" }
 
-            post "/api/v1/login", :params => invalid_params.to_json,  :headers => { "CONTENT_TYPE" => "application/json" }
+            login(invalid_params)
             json = JSON.parse(response.body) 
 
             expect(response).to have_http_status(200)
@@ -23,9 +29,7 @@ RSpec.describe "Sessions", type: :request do
         end
 
         it "should create a session cookie upon logging in" do 
-            login_params = { email: "cr@example.com", password: "sample" }
-
-            post "/api/v1/login", :params => login_params.to_json,  :headers => { "CONTENT_TYPE" => "application/json" }
+            login(@login_params)
 
             expect(response).to have_http_status(200)
             expect(session[:user_id]).to_not be_nil
