@@ -3,6 +3,8 @@ class ApplicationController < ActionController::API
     include AbstractController::Helpers
     include ActionController::RequestForgeryProtection
 
+    include CurrentUserConcern
+
     before_action :set_csrf_cookie
     protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
