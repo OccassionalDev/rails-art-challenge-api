@@ -24,6 +24,10 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'versioncake'
 
 gem 'carrierwave', '~> 2.0'
+# gem 'cloudinary'
+
+ # gem 'sidekiq'
+ # gem 'sinatra'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
